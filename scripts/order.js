@@ -24,7 +24,8 @@ const buildOrderListItem = (order) => {
         return tech.id === order.techId
     })
 
-    let totalCost = 0
+    //SET BASE COST OF VEHICLE HERE
+    let totalCost = 13000
     if(foundPaint !== undefined){totalCost += foundPaint.price}
     if(foundInterior !== undefined){totalCost += foundInterior.price }
     if(foundWheel !== undefined){totalCost += foundWheel.price}
