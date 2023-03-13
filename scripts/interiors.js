@@ -1,4 +1,4 @@
-import { getInteriors } from "./database.js"
+import { getInteriors, setInterior } from "./database.js"
 const arrayOfInteriors = getInteriors()
 
 
@@ -17,3 +17,11 @@ export const interiors = () => {
 
     return html
 }
+
+
+
+document.addEventListener("change", (event) => {
+    if (event.target.id === "dropdown-interiors") {
+        setInterior(parseInt(event.target.value))
+    }
+})

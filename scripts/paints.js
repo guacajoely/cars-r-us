@@ -1,5 +1,13 @@
-import { getPaints } from "./database.js"
+import { getPaints, setPaint } from "./database.js"
 const arrayOfPaints = getPaints()
+
+
+document.addEventListener("change", (event) => {
+    if (event.target.id === "dropdown-paints") {
+        setPaint(parseInt(event.target.value))
+    }
+}
+)
 
 
 export const paints = () => {

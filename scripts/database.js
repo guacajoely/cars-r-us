@@ -64,3 +64,48 @@ export const getTech = () => {
 export const getOrders = () => {
     return database.orders.map(order => ({...order}))
 }
+
+
+//Now you need to export functions whose responsibility is to SET state.
+export const setPaint = (id) => {
+    database.orderBuilder.paintId = id
+    console.log(database.orderBuilder)
+}
+
+export const setInterior = (id) => {
+    database.orderBuilder.interiorId = id
+    console.log(database.orderBuilder)
+}
+
+export const setWheels = (id) => {
+    database.orderBuilder.wheelId = id
+    console.log(database.orderBuilder)
+}
+
+export const setTech = (id) => {
+    database.orderBuilder.techId = id
+    console.log(database.orderBuilder)
+}
+
+
+//function that takes temporary choices being stored in the orderBuilder state object and make them permanent.
+export const addCustomOrder = () => {
+    // Copy the current state of user choices
+    const newOrder = {...database.orderBuilder}
+
+    // Add a new primary key to the object
+    const lastIndex = database.orders.length - 1
+    newOrder.id = database.orders[lastIndex].id + 1
+
+    // Add a timestamp to the order
+    newOrder.timestamp = Date.now()
+
+    // Add the new order object to custom orders state
+    database.orders.push(newOrder)
+
+    // Reset the temporary state for user choices
+    database.orderBuilder = {}
+
+    // Broadcast a notification that permanent state has changed
+    document.dispatchEvent(new CustomEvent("stateChanged"))
+}

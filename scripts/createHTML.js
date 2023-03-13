@@ -3,6 +3,7 @@ import { wheels } from "./wheels.js"
 import { interiors } from "./interiors.js"
 import { tech } from "./tech.js"
 import { orders } from "./order.js"
+import { addCustomOrder } from "./database.js"
 
 document.addEventListener("click", (clickEvent) => {
     const itemClicked = clickEvent.target

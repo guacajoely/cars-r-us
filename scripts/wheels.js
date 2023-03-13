@@ -1,4 +1,4 @@
-import { getWheels } from "./database.js"
+import { getWheels, setWheels } from "./database.js"
 const arrayOfWheels = getWheels()
 
 
@@ -17,3 +17,10 @@ export const wheels = () => {
 
     return html
 }
+
+
+document.addEventListener("change", (event) => {
+    if (event.target.id === "dropdown-wheels") {
+        setWheels(parseInt(event.target.value))
+    }
+})

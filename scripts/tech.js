@@ -1,4 +1,4 @@
-import { getTech } from "./database.js"
+import { getTech, setTech } from "./database.js"
 const arrayOfTech = getTech()
 
 
@@ -17,3 +17,11 @@ export const tech = () => {
 
     return html
 }
+
+
+
+document.addEventListener("change", (event) => {
+    if (event.target.id === "dropdown-tech") {
+        setTech(parseInt(event.target.value))
+    }
+})
