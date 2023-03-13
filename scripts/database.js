@@ -1,5 +1,11 @@
 const database = {
 
+    bases: [
+        { id: 1, name: "Car", price: 10000 },
+        { id: 2, name: "SUV", price: 15000 },
+        { id: 3, name: "Truck", price: 22500 },
+    ],
+
     paints: [
         { id: 1, name: "Silver", price: 1000 },
         { id: 2, name: "Midnight Blue", price: 1500 },
@@ -31,6 +37,7 @@ const database = {
     orders: [
         {
             id: 1,
+            baseId: 1,
             paintId: 1,
             interiorId: 1,
             wheelId: 1,
@@ -44,6 +51,10 @@ const database = {
 }
 
 
+
+export const getBases = () => {
+    return database.bases.map(base => ({...base}))
+}
 
 export const getPaints = () => {
     return database.paints.map(paint => ({...paint}))
@@ -67,6 +78,12 @@ export const getOrders = () => {
 
 
 //Now you need to export functions whose responsibility is to SET state.
+
+export const setBase = (id) => {
+    database.orderBuilder.baseId = id
+    console.log(database.orderBuilder)
+}
+
 export const setPaint = (id) => {
     database.orderBuilder.paintId = id
     console.log(database.orderBuilder)
@@ -85,5 +102,27 @@ export const setWheels = (id) => {
 export const setTech = (id) => {
     database.orderBuilder.techId = id
     console.log(database.orderBuilder)
+}
+
+//function that takes temporary choices being stored in the orderBuilder state object and make them permanent.
+export const addCustomOrder = () => {
+    // Copy the current state of user choices
+    const newOrder = {...database.orderBuilder}
+
+    // Add a new primary key to the object
+    const lastIndex = database.orders.length - 1
+    newOrder.id = database.orders[lastIndex].id + 1
+
+    // Add a timestamp to the order
+    newOrder.timestamp = Date.now()
+
+    // Add the new order object to custom orders state
+    database.orders.push(newOrder)
+
+    // Reset the temporary state for user choices
+    database.orderBuilder = {}
+
+    // Broadcast a notification that permanent state has changed
+    document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 

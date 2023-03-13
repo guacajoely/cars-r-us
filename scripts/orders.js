@@ -1,13 +1,19 @@
-import { getOrders, getPaints, getInteriors, getWheels, getTech } from "./database.js"
+import { getBases, getOrders, getPaints, getInteriors, getWheels, getTech } from "./database.js"
 const arrayOfPaints = getPaints()
 const arrayOfInteriors = getInteriors()
 const arrayOfWheels = getWheels()
 const arrayOfTech = getTech()
+const arrayOfBases = getBases()
 
 
 const buildOrderListItem = (order) => {
 
     // Remember that the function you pass to find() must return true/false
+
+    const foundBase = arrayOfBases.find((base) => {
+        return base.id === order.baseId
+    })
+
     const foundPaint = arrayOfPaints.find((paint) => {
         return paint.id === order.paintId
     })
@@ -24,16 +30,21 @@ const buildOrderListItem = (order) => {
         return tech.id === order.techId
     })
 
+    let totalCost=0
     //SET BASE COST OF VEHICLE HERE
-    let totalCost = 13000
-    if(foundPaint !== undefined){totalCost += foundPaint.price}
-    if(foundInterior !== undefined){totalCost += foundInterior.price }
-    if(foundWheel !== undefined){totalCost += foundWheel.price}
-    if(foundTech !== undefined){totalCost += foundTech.price}
+    if(foundBase && foundPaint && foundInterior && foundWheel && foundTech){
+        totalCost = foundBase.price + foundPaint.price + foundInterior.price + foundWheel.price + foundTech.price
+    }
+
+    else{window.alert("Please select an option for each feature to submit an order")
+        location.reload()
+        return
+    }
 
     const costString = totalCost.toLocaleString("en-US", {
         style: "currency",
-        currency: "USD"
+        currency: "USD",
+        maximumFractionDigits: 0
     })
     
     return `<li class="order">

@@ -8,7 +8,12 @@ export const interiors = () => {
 
    ${
         arrayOfInteriors.map(interior => {
-            return `<option value="${interior.id}">${interior.name}</option>`
+            const price = interior.price.toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+                maximumFractionDigits: 0
+            })
+            return `<option value="${interior.id}">${interior.name} (${price})</option>`
         }).join("")
     }
             </select>`

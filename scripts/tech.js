@@ -8,7 +8,12 @@ export const tech = () => {
 
     // Use .map() for converting objects to <li> elements
     const listItemsArray = arrayOfTech.map(tech => {
-        return `<option value="${tech.id}">${tech.name}</option>`
+        const price = tech.price.toLocaleString("en-US", {
+            style: "currency",
+            currency: "USD",
+            maximumFractionDigits: 0
+        })
+        return `<option value="${tech.id}">${tech.name} (${price})</option>`
     })
 
     // Join all of the strings in the array into a single string

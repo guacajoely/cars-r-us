@@ -8,7 +8,12 @@ export const wheels = () => {
 
     // Use .map() for converting objects to <li> elements
     const listItemsArray = arrayOfWheels.map(wheel => {
-        return `<option value="${wheel.id}">${wheel.name}</option>`
+        const price = wheel.price.toLocaleString("en-US", {
+            style: "currency",
+            currency: "USD",
+            maximumFractionDigits: 0
+        })
+        return `<option value="${wheel.id}">${wheel.name} (${price})</option>`
     })
 
     // Join all of the strings in the array into a single string
