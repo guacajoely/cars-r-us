@@ -1,3 +1,69 @@
 button {
     margin-top: 30px;
+    background-color: #185558;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Comfortaa|Patua+One");
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&family=Tilt+Warp&display=swap');
+
+body,
+button,
+input,
+select,
+textarea {
+	color: #404040;
+	font-family: 'Tilt Warp', Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Tilt Warp', sans-serif;
+  letter-spacing: 2px;
+}
+
+ul {
+    list-style-type: none;
+    padding-inline-start: 0.25rem;
+}
+
+#orderButton {
+    margin: 2rem;
+    padding: 0.5rem;
+    background-color: #185558;
+    color: white;
+    font-size: 1rem;
+}
+
+.options {
+    flex-basis: 24%;
+    margin: 1rem;
+    border: 1px dashed dodgerblue;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0.25rem 0.25rem 0.5rem rgb(143, 143, 143);
+    min-width: 270px;
+    background-color: beige;
+}
+
+.choices {
+    display: flex;
+    flex-wrap: wrap;
+    height: 400px;
+    width: 800px;
+}
+
+.custom-orders, .order{
+    margin-left: 40px;
+}
+
+.order{
+    background-color: aliceblue;
+    border: 1px dashed dodgerblue;
+    padding: 1rem;
+    width: 800px;
+}
+
+#dropdown-tech{
+    width: 250px;
 }

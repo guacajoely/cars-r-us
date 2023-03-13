@@ -36,7 +36,7 @@ const buildOrderListItem = (order) => {
         currency: "USD"
     })
     
-    return `<li>
+    return `<li class="order">
                 Order #${order.id} cost ${costString}
             </li>`
 

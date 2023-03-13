@@ -40,7 +40,7 @@ export const createHTML = () => {
             <button id="orderButton">Place Car Order</button>
         </article>
         <article class="custom-orders">
-            <h2>Orders</h2>
+            <h2>Custom Car Orders</h2>
             ${orders()}
     
         </article>
