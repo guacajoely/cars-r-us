@@ -87,25 +87,3 @@ export const setTech = (id) => {
     console.log(database.orderBuilder)
 }
 
-
-//function that takes temporary choices being stored in the orderBuilder state object and make them permanent.
-export const addCustomOrder = () => {
-    // Copy the current state of user choices
-    const newOrder = {...database.orderBuilder}
-
-    // Add a new primary key to the object
-    const lastIndex = database.orders.length - 1
-    newOrder.id = database.orders[lastIndex].id + 1
-
-    // Add a timestamp to the order
-    newOrder.timestamp = Date.now()
-
-    // Add the new order object to custom orders state
-    database.orders.push(newOrder)
-
-    // Reset the temporary state for user choices
-    database.orderBuilder = {}
-
-    // Broadcast a notification that permanent state has changed
-    document.dispatchEvent(new CustomEvent("stateChanged"))
-}
