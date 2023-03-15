@@ -8,12 +8,7 @@ export const bases = () => {
 
     // Use .map() for converting objects to <li> elements
     const listItemsArray = arrayOfBases.map(base => {
-        const price = base.price.toLocaleString("en-US", {
-            style: "currency",
-            currency: "USD",
-            maximumFractionDigits: 0
-        })
-        return `<option value="${base.id}">${base.name} (${price})</option>`
+        return `<option value="${base.id}">${base.name}</option>`
     })
 
     // Join all of the strings in the array into a single string

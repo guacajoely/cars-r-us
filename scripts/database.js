@@ -1,23 +1,23 @@
 const database = {
 
     bases: [
-        { id: 1, name: "Car", price: 10000 },
-        { id: 2, name: "SUV", price: 15000 },
-        { id: 3, name: "Truck", price: 22500 },
+        { id: 1, name: "Car", priceAdjust: 1},
+        { id: 2, name: "SUV", priceAdjust: 1.5},
+        { id: 3, name: "Truck", priceAdjust: 2.25},
     ],
 
     paints: [
-        { id: 1, name: "Silver", price: 1000 },
-        { id: 2, name: "Midnight Blue", price: 1500 },
-        { id: 3, name: "Firebrick Red", price: 1500 },
-        { id: 4, name: "Spring Green", price: 1500 }
+        { id: 1, name: "Silver", price: 10000 },
+        { id: 2, name: "Midnight Blue", price: 10250 },
+        { id: 3, name: "Firebrick Red", price: 10250 },
+        { id: 4, name: "Spring Green", price: 10250 }
     ],
 
     interiors: [
         { id: 1, name: "Beige Fabric", price: 1000 },
         { id: 2, name: "Charcoal Fabric", price: 1000 },
-        { id: 3, name: "White Leather", price: 2000 },
-        { id: 4, name: "Black Leather", price: 2000 },
+        { id: 3, name: "White Leather", price: 1500 },
+        { id: 4, name: "Black Leather", price: 1500 },
     ],
 
     wheels: [
@@ -34,17 +34,7 @@ const database = {
         { id: 4, name: "Ultra Package (includes navigation and visibility packages)", price: 2600 }
     ],
 
-    orders: [
-        {
-            id: 1,
-            baseId: 1,
-            paintId: 1,
-            interiorId: 1,
-            wheelId: 1,
-            techId: 1,
-            timestamp: 1614659931693
-        }
-    ],
+    orders: [],
 
     orderBuilder: {},
 
@@ -110,8 +100,7 @@ export const addCustomOrder = () => {
     const newOrder = {...database.orderBuilder}
 
     // Add a new primary key to the object
-    const lastIndex = database.orders.length - 1
-    newOrder.id = database.orders[lastIndex].id + 1
+    newOrder.id = database.orders.length + 1
 
     // Add a timestamp to the order
     newOrder.timestamp = Date.now()

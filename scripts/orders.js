@@ -30,10 +30,10 @@ const buildOrderListItem = (order) => {
         return tech.id === order.techId
     })
 
-    let totalCost=0
+    let totalCost = 0
     //SET BASE COST OF VEHICLE HERE
     if(foundBase && foundPaint && foundInterior && foundWheel && foundTech){
-        totalCost = foundBase.price + foundPaint.price + foundInterior.price + foundWheel.price + foundTech.price
+        totalCost = (foundPaint.price + foundInterior.price + foundWheel.price + foundTech.price) * foundBase.priceAdjust
     }
 
     else{window.alert("Please select an option for each feature to submit an order")
